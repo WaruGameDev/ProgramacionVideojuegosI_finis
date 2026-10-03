@@ -1,16 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SpaceshipPlayer : MonoBehaviour
 {
-    public int lifes = 3;
+    public float hp;
+    public float maxHp =5;
     public float speed = 5;
     public GameObject bullet;
     public Transform canon;
+    public Image bar;
 
+    private void Start()
+    {
+        hp = maxHp;
+    }
     // Update is called once per frame
     void Update()
     {
+        bar.fillAmount = hp / maxHp;
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Instantiate(bullet, canon.position, Quaternion.identity);
