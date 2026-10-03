@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(fx, transform.position, Quaternion.identity);
                 GameManager.instance.AddScore(scoreToAdd);
+                
                 Destroy(gameObject);
             }
         }
