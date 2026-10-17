@@ -17,8 +17,9 @@ public class PlatformerPlayer : MonoBehaviour
     public float maxFallDamage = 8f; //Da�o m�ximo que puede recibir el jugador al caer
 
     public ScoreHUD scoreHUD; //Referencia al ScoreHUD para actualizar el puntaje en pantalla
+    public Transform respawnPoint; //Referencia al punto de respawn del jugador
 
-
+    public int lives = 3; //Cantidad de vidas del jugador
 
     void Start()
     {
@@ -58,7 +59,8 @@ public class PlatformerPlayer : MonoBehaviour
         
         if(transform.position.y < -5)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Resetear la escena
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Resetear la escena
+            Death(); //Llamo a la funcin de muerte del jugador
         }
 
     }
@@ -92,7 +94,8 @@ public class PlatformerPlayer : MonoBehaviour
 
             if(collision.relativeVelocity.y > maxFallDamage) //Si la velocidad de caida es mayor a la velocidad m�xima de da�o, entonces reinicio la escena
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+                Death(); //Llamo a la funcin de muerte del jugador
             }
 
 
@@ -102,7 +105,8 @@ public class PlatformerPlayer : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Hazard") || collision.gameObject.CompareTag("Enemy")) //Si es un Hazard O es un Enemy
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Death(); //Llamo a la funci�n de muerte del jugador
         }
 
     }
@@ -135,6 +139,23 @@ public class PlatformerPlayer : MonoBehaviour
             Destroy(collision.transform.parent.gameObject);
 
         }
+    }
+
+    public void Death()
+    {
+        
+        lives--;
+        
+        if(lives <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Resetear la escena
+        }
+        else
+        {
+            transform.position = respawnPoint.position; //Respawnear al jugador en el punto de respawn
+            rb.linearVelocity = Vector2.zero; //Reiniciar la velocidad del jugador al respawnear
+        }
+        scoreHUD.RefreshLife(); //Actualizo el puntaje en pantalla
     }
 
 

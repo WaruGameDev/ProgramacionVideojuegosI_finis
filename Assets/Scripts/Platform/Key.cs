@@ -2,20 +2,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public Door doorObjectScript;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Door doorObjectScript; 
+    public ScoreHUD scoreHUD; //Referencia al ScoreHUD para actualizar el puntaje en pantalla  
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +11,7 @@ public class Key : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             doorObjectScript.OpenDoor();
+            scoreHUD.ShowKeyHUD(); //Muestro el HUD de la llave
             Destroy(this.gameObject);
         }
     }
