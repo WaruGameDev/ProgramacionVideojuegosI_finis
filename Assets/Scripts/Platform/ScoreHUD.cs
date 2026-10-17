@@ -64,28 +64,29 @@ public class ScoreHUD : MonoBehaviour
         winScreen.blocksRaycasts = true; // hace que la pantalla de victoria bloquee los raycasts
     }
     public void RestartLevel()
-    {
+    { 
+        fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
+        fader.blocksRaycasts = true; // hace que el fader sea interactuable y
         fader.DOFade(1, 1f).OnComplete(() => {
-            fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
-            fader.blocksRaycasts = true; // hace que el fader sea interactuable y
-            SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name); // reinicia la escena actual
+           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // reinicia la escena actual
         }); // hace el fade in de la pantalla negra al reiniciar el nivel
        
     }
     public void BackToMainMenu()
     {
+        fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
+        fader.blocksRaycasts = true; // hace que el fader sea interactuable y bloquee los raycasts para que no se pueda interactuar con el menú mientras se hace el fade in
         fader.DOFade(1, 1f).OnComplete(() => {
-            fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
-            fader.blocksRaycasts = true; // hace que el fader sea interactuable y bloquee los raycasts para que no se pueda interactuar con el menú mientras se hace el fade in
             SceneManager.LoadScene("Menu"); // carga la escena del menú principal
         }); // hago el fade in de la pantalla negra al volver al menú principal
     }
 
     public void LoadNextLevel()
     {
+        fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
+        fader.blocksRaycasts = true; // hace que el fader sea interactuable y bloquee los raycasts para que no se pueda interactuar con el menú mientras se hace el fade in
         fader.DOFade(1, 1f).OnComplete(() => {
-            fader.interactable = true; // hace que el fader sea interactuable para que pueda bloquear los raycasts mientras se hace el fade in
-            fader.blocksRaycasts = true; // hace que el fader sea interactuable y bloquee los raycasts para que no se pueda interactuar con el menú mientras se hace el fade in
             SceneManager.LoadScene(nextLevel); // carga la siguiente escena
         }); // hago el fade in de la pantalla negra al cargar la siguiente escena
     }
