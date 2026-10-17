@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
@@ -23,6 +24,8 @@ public class PlatformerPlayer : MonoBehaviour
 
     public AudioSource coinSound; //Referencia al AudioSource del sonido de la moneda
 
+    public Animator animator; //Referencia al Animator del jugador
+    public SpriteRenderer spriteRenderer; //Referencia al SpriteRenderer del jugador
 
     void Start()
     {
@@ -64,6 +67,15 @@ public class PlatformerPlayer : MonoBehaviour
         {
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Resetear la escena
             Death(); //Llamo a la funcin de muerte del jugador
+        }
+        animator.SetFloat("speed", MathF.Abs(rb.linearVelocity.x));
+        if(rb.linearVelocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if(rb.linearVelocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
         }
 
     }
