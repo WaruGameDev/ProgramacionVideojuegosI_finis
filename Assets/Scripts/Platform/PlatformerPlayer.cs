@@ -85,6 +85,7 @@ public class PlatformerPlayer : MonoBehaviour
         Debug.Log("SCORE: " + score);
         coinSound.Play(); //Reproduzco el sonido de la moneda
         scoreHUD.RefreshScore(); //Actualizo el puntaje en pantalla
+       
     }
 
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Door : MonoBehaviour
     SpriteRenderer sr;
 
     bool isOpened = false;
+    public string nextLevel;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class Door : MonoBehaviour
             if(isOpened == true)
             {
                 collision.gameObject.transform.localScale = new Vector3(5, 5, 5);
+                SceneManager.LoadScene(nextLevel);
                 Destroy(this.gameObject);
             }
             else
