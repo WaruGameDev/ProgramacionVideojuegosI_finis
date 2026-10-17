@@ -21,6 +21,9 @@ public class PlatformerPlayer : MonoBehaviour
 
     public int lives = 3; //Cantidad de vidas del jugador
 
+    public AudioSource coinSound; //Referencia al AudioSource del sonido de la moneda
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -80,6 +83,7 @@ public class PlatformerPlayer : MonoBehaviour
     {
         score += addedScore;
         Debug.Log("SCORE: " + score);
+        coinSound.Play(); //Reproduzco el sonido de la moneda
         scoreHUD.RefreshScore(); //Actualizo el puntaje en pantalla
     }
 
