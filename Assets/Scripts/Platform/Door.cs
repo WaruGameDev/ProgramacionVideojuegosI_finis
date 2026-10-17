@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-using System.Collections;
 
 public class Door : MonoBehaviour
 {
@@ -36,8 +34,9 @@ public class Door : MonoBehaviour
             {
                 collision.gameObject.transform.localScale = new Vector3(5, 5, 5);
                 //SceneManager.LoadScene(nextLevel);
-                StartCoroutine(NextLevel());
-                scoreHUD.faderActive = true; //Activo el fader para hacer el fade out
+
+                
+                scoreHUD.ShowWinScreen(); //Muestro la pantalla de victoria
                 //Destroy(this.gameObject);
             }
             else
@@ -47,10 +46,5 @@ public class Door : MonoBehaviour
 
         }
     }
-    IEnumerator NextLevel()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(nextLevel);
-        yield return null;
-    }
+    
 }

@@ -69,6 +69,7 @@ public class PlatformerPlayer : MonoBehaviour
             Death(); //Llamo a la funcin de muerte del jugador
         }
         animator.SetFloat("speed", MathF.Abs(rb.linearVelocity.x));
+        animator.SetFloat("verticalSpeed", MathF.Abs(rb.linearVelocity.y));
         if(rb.linearVelocity.x > 0)
         {
             spriteRenderer.flipX = false;
