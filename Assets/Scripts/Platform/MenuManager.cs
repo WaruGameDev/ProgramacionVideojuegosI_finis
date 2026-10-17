@@ -4,6 +4,8 @@ using DG.Tweening;
 public class MenuManager : MonoBehaviour
 {
     public CanvasGroup fader; //Referencia al CanvasGroup del fader
+    public GameObject mainMenu; //Referencia al GameObject del menú principal
+    public GameObject optionsMenu; //Referencia al GameObject del menú de opciones
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,5 +24,19 @@ public class MenuManager : MonoBehaviour
         fader.DOFade(1, 1f).OnComplete(() => {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Nivel1"); // cargo la escena del juego
         }); // hago el fade in de la pantalla negra al iniciar el juego
+    }
+    public void OpenOptionsMenu()
+    {
+        mainMenu.SetActive(false); // desactivo el menú principal
+        optionsMenu.SetActive(true); // activo el menú de opciones
+    }
+    public void CloseOptionsMenu()
+    {
+        optionsMenu.SetActive(false); // desactivo el menú de opciones
+        mainMenu.SetActive(true); // activo el menú principal
+    }
+    public void QuitGame()
+    {
+        Application.Quit(); // cierro el juego
     }
 }
