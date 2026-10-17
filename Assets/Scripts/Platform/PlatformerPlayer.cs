@@ -16,6 +16,8 @@ public class PlatformerPlayer : MonoBehaviour
     public int score = 0;
     public float maxFallDamage = 8f; //Da�o m�ximo que puede recibir el jugador al caer
 
+    public ScoreHUD scoreHUD; //Referencia al ScoreHUD para actualizar el puntaje en pantalla
+
 
 
     void Start()
@@ -76,6 +78,7 @@ public class PlatformerPlayer : MonoBehaviour
     {
         score += addedScore;
         Debug.Log("SCORE: " + score);
+        scoreHUD.RefreshScore(); //Actualizo el puntaje en pantalla
     }
 
 
